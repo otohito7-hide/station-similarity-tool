@@ -45,7 +45,10 @@ def load_data():
     ※ GitHubに tokyo_stations.csv を配置して使用
     """
     try:
-        df = pd.read_csv("tokyo_stations.csv", encoding="utf-8-sig")
+        import os
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        csv_path = os.path.join(base_dir, "tokyo_stations.csv")
+        df = pd.read_csv(csv_path, encoding="utf-8-sig")
     except FileNotFoundError:
         # フォールバック: サンプルデータ
         df = pd.DataFrame([
@@ -273,4 +276,3 @@ with tab3:
 
 st.markdown("---")
 st.caption("📌 データ: 国土数値情報・オープンポータル（東京都607駅）｜地価・飲食店数は乗降客数からの推定値")
-
