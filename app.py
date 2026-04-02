@@ -269,8 +269,8 @@ with tab1:
     st.markdown(f"#### {target}駅に類似した駅 TOP {top_n}")
     display_df = result_df.drop(columns=["lat", "lon"])
 
-    # 類似度でカラーバー表示
-　　st.dataframe(
+    # 類似度をProgressColumnで表示
+    st.dataframe(
         display_df,
         use_container_width=True,
         hide_index=True,
