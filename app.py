@@ -73,6 +73,8 @@ def run_clustering(df, n_clusters):
     X_scaled = scaler.fit_transform(X)
     pca = PCA(n_components=2, random_state=42)
     X_pca = pca.fit_transform(X_scaled)
+    # データ件数よりクラスタ数が多い場合は自動調整
+    n_clusters = min(n_clusters, len(df))
     kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
     clusters = kmeans.fit_predict(X_scaled)
     df = df.copy()
