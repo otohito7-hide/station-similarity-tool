@@ -270,10 +270,18 @@ with tab1:
     display_df = result_df.drop(columns=["lat", "lon"])
 
     # 類似度でカラーバー表示
-    st.dataframe(
-        display_df.style.background_gradient(subset=["類似度"], cmap="Greens"),
+　　st.dataframe(
+        display_df,
         use_container_width=True,
-        hide_index=True
+        hide_index=True,
+        column_config={
+            "類似度": st.column_config.ProgressColumn(
+                "類似度",
+                min_value=0,
+                max_value=1,
+                format="%.3f",
+            )
+        }
     )
 
     # CSVダウンロード
